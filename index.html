@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <base href="/modern-nostagia/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZHANG MINGYUAN · Portfolio</title>
+  <link rel="stylesheet" href="/modern-nostagia/assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: calc(var(--nav-height) + 60px) 40px 80px;
+      background: var(--bg-cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Soft radial glows */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 5%;
+      left: -8%;
+      width: 55vw;
+      height: 55vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,181,167,0.13) 0%, transparent 68%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: -5%;
+      width: 40vw;
+      height: 40vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(181,193,160,0.12) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero > * { position: relative; z-index: 1; }
+
+    .hero-eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent-rose);
+      margin-bottom: 28px;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(3.6rem, 10vw, 7.5rem);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      line-height: 0.95;
+      color: var(--text-dark);
+      margin-bottom: 32px;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      color: var(--text-warm);
+      max-width: 400px;
+      line-height: 1.85;
+      margin-bottom: 40px;
+      opacity: 0.85;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 64px;
+    }
+
+    .btn-primary {
+      background: var(--text-dark);
+      color: var(--bg-cream);
+      border-color: var(--text-dark);
+      padding: 12px 30px;
+    }
+    .btn-primary:hover {
+      background: var(--text-warm);
+      border-color: var(--text-warm);
+      color: var(--bg-cream);
+    }
+
+    .scroll-hint {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-sans);
+      font-size: 0.66rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-warm);
+      opacity: 0.45;
+    }
+
+    .scroll-line {
+      display: block;
+      width: 1px;
+      height: 44px;
+      background: linear-gradient(to bottom, var(--accent-rose), transparent);
+      animation: scrollPulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(0.7); transform-origin: top; }
+      50%       { opacity: 1;   transform: scaleY(1);   transform-origin: top; }
+    }
+
+    /* ── Featured Works ── */
+    .featured-section {
+      padding: 100px 0 110px;
+      background: var(--bg-rice);
+    }
+
+    .featured-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    /* 5 cards: flex wrap with center justify — gives 3+2 layout */
+    .featured-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 28px;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .featured-grid .polaroid-card {
+      flex: 0 0 calc(33.33% - 20px);
+      min-width: 240px;
+      max-width: 340px;
+    }
+
+    /* Decorative tape strip */
+    .tape-strip {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-1.5deg);
+      width: 52px;
+      height: 20px;
+      background: rgba(226, 179, 139, 0.45);
+      border-radius: 2px;
+      z-index: 2;
+    }
+
+    @media (max-width: 1024px) {
+      .featured-grid .polaroid-card {
+        flex: 0 0 calc(50% - 15px);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .featured-grid {
+        padding: 0 20px;
+      }
+      .featured-grid .polaroid-card {
+        flex: 0 0 100%;
+        max-width: 380px;
+      }
+    }
+
+    /* ── Intro strip ── */
+    .intro-strip {
+      background: var(--bg-terracotta);
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      padding: 64px 0;
+      text-align: center;
+    }
+
+    .intro-strip h2 {
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--text-dark);
+      max-width: 680px;
+      margin: 0 auto;
+      line-height: 1.55;
+      letter-spacing: 0.01em;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+
+  <!-- ── Hero ── -->
+  <section class="hero" aria-label="首页封面">
+    <p class="hero-eyebrow fade-up">空间设计 · 品牌策划 · 艺术创作</p>
+    <h1 class="hero-title fade-up">ZHANG<br>MINGYUAN</h1>
+    <p class="hero-subtitle fade-up">
+      专注于空间叙事与视觉语言的设计探索，<br>
+      在功能与诗意之间寻找恒久的平衡。
+    </p>
+    <div class="hero-cta fade-up">
+      <a href="/about.html" class="btn btn-primary">了解我</a>
+      <a href="/works/urban.html" class="btn">浏览作品</a>
+    </div>
+    <div class="scroll-hint fade-up">
+      <span>向下滚动</span>
+      <span class="scroll-line"></span>
+    </div>
+  </section>
+
+  <!-- ── Intro Quote ── -->
+  <div class="intro-strip">
+    <div class="container">
+      <h2 class="fade-up">
+        "每一个空间都是一次对话，<br>
+        设计者的工作是让沉默的材料开口说话。"
+      </h2>
+    </div>
+  </div>
+
+  <!-- ── Featured Works ── -->
+  <section class="featured-section" aria-label="精选作品">
+    <div class="featured-header fade-up">
+      <p class="section-eyebrow">Selected Works</p>
+      <h2 class="section-title">精选作品</h2>
+      <div class="divider divider-center"></div>
+      <p style="font-size:0.88rem;color:var(--text-warm);opacity:0.7;letter-spacing:0.04em;">
+        五个方向，十个项目，一种持续的设计信念
+      </p>
+    </div>
+
+    <div class="featured-grid">
+
+      <!-- Urban -->
+      <a href="/projects/urban-project-1.html" class="polaroid-card fade-up" aria-label="城市共生广场">
+        <div class="tape-strip"></div>
+        <div class="card-img-inner">
+          <span class="card-tag">城市公共</span>
+          <span>图片占位</span>
+        </div>
+        <span class="card-caption">城市共生广场 · 2023</span>
+      </a>
+
+      <!-- Retail -->
+      <a href="/projects/retail-project-1.html" class="polaroid-card fade-up" aria-label="茶之境品牌空间">
+        <div class="tape-strip" style="transform:translateX(-50%) rotate(1.2deg);background:rgba(181,193,160,0.45);"></div>
+        <div class="card-img-inner">
+          <span class="card-tag">消费连锁</span>
+          <span>图片占位</span>
+        </div>
+        <span class="card-caption">茶之境 品牌空间 · 2023</span>
+      </a>
+
+      <!-- Culture Tourism -->
+      <a href="/projects/culture-project-1.html" class="polaroid-card fade-up" aria-label="江南记忆古镇文旅">
+        <div class="tape-strip" style="transform:translateX(-50%) rotate(-0.8deg);background:rgba(226,179,139,0.45);"></div>
+        <div class="card-img-inner">
+          <span class="card-tag">文旅融合</span>
+          <span>图片占位</span>
+        </div>
+        <span class="card-caption">江南记忆 · 古镇文旅 · 2022</span>
+      </a>
+
+      <!-- Art Exhibition -->
+      <a href="/projects/art-project-1.html" class="polaroid-card fade-up" aria-label="虚实之间当代艺术展">
+        <div class="tape-strip" style="transform:translateX(-50%) rotate(1.8deg);background:rgba(212,181,167,0.5);"></div>
+        <div class="card-img-inner">
+          <span class="card-tag">艺术展览</span>
+          <span>图片占位</span>
+        </div>
+        <span class="card-caption">虚实之间 · 当代艺术展 · 2023</span>
+      </a>
+
+      <!-- Personal Creative -->
+      <a href="/projects/personal-project-1.html" class="polaroid-card fade-up" aria-label="时间切片插画系列">
+        <div class="tape-strip" style="transform:translateX(-50%) rotate(-1deg);background:rgba(181,193,160,0.4);"></div>
+        <div class="card-img-inner">
+          <span class="card-tag">个人创意</span>
+          <span>图片占位</span>
+        </div>
+        <span class="card-caption">时间切片 · 插画系列 · 2024</span>
+      </a>
+
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
